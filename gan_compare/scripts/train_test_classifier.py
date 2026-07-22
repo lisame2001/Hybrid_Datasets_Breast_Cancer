@@ -425,17 +425,39 @@ def main():
                 transform=test_transform,
                 return_indices=str(5) in args.ensemble_strategies,
             )
+
+    if not config.use_real and not config.use_synthetic:
+        raise ValueError(
+            "At least one of use_real or use_synthetic must be True."
+        )
+
     train_dataset_no_synth = train_dataset
+
     if config.use_synthetic:
-        # APPEND SYNTHETIC DATA
         synth_train_images = SyntheticDataset(
             transform=train_transform,
             config=config,
         )
-        train_dataset = ConcatDataset([train_dataset, synth_train_images])
+
+        if config.use_real:
+            train_dataset = ConcatDataset(
+                [train_dataset, synth_train_images]
+            )
+        else:
+            train_dataset = synth_train_images
+
         logging.info(
-            f"Number of synthetic patches added to training set: {len(synth_train_images)}"
+            f"Number of synthetic patches used for training: "
+            f"{len(synth_train_images)}"
         )
+    elif not config.use_real:
+        raise ValueError(
+            "Training cannot run without real or synthetic images."
+        )
+
+    logging.info(
+        f"Total number of training samples: {len(train_dataset)}"
+    )
 
     if config.binary_classification and False:  # and False:
         num_train_negative, num_train_positive = get_label_balance_info(train_dataset, "train",

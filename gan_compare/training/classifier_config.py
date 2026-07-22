@@ -27,6 +27,16 @@ class ClassifierConfig(BaseConfig):
     # Whether to use synthetic data at all
     use_synthetic: bool = True
 
+    # Whether to include real images in the training set
+    use_real: bool = True
+
+    # Total number of synthetic images to use.
+    # None means that all available synthetic images are used.
+    synthetic_count: Optional[int] = None
+
+    # Seed used only for selecting the synthetic subset
+    synthetic_sampling_seed: int = 42
+
     # Dropout rate
     dropout_rate: float = 0.3
 

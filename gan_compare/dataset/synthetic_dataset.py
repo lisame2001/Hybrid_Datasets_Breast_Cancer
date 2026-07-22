@@ -22,10 +22,51 @@ class SyntheticDataset(BaseDataset):
         config: BaseConfig = None,
         transform: any = None,
     ):
-        self.paths = [
+        all_paths = sorted(
             os.path.join(config.synthetic_data_dir, filename)
             for filename in os.listdir(config.synthetic_data_dir)
+            if filename.lower().endswith(".png")
+        )
+
+        malignant_paths = [
+            path for path in all_paths
+            if "malignant" in Path(path).name.lower()
         ]
+        benign_paths = [
+            path for path in all_paths
+            if "benign" in Path(path).name.lower()
+        ]
+
+        rng = random.Random(config.synthetic_sampling_seed)
+        rng.shuffle(malignant_paths)
+        rng.shuffle(benign_paths)
+
+        if config.synthetic_count is None:
+            self.paths = all_paths
+        else:
+            if config.synthetic_count < 0:
+                raise ValueError("synthetic_count must be zero or greater.")
+
+            malignant_count = config.synthetic_count // 2
+            benign_count = config.synthetic_count - malignant_count
+
+            if malignant_count > len(malignant_paths):
+                raise ValueError(
+                    f"Requested {malignant_count} malignant synthetic images, "
+                    f"but only {len(malignant_paths)} are available."
+                )
+
+            if benign_count > len(benign_paths):
+                raise ValueError(
+                    f"Requested {benign_count} benign synthetic images, "
+                    f"but only {len(benign_paths)} are available."
+                )
+
+            self.paths = (
+                malignant_paths[:malignant_count]
+                + benign_paths[:benign_count]
+            )
+
         self.config = config
         self.model_name = self.config.model_name
         self.transform = transform
