@@ -8,7 +8,7 @@
 #SBATCH --output=slurm_logs/gpu_smoke_test_%j.out
 #SBATCH --error=slurm_logs/gpu_smoke_test_%j.err
 
-source /home/student/s/sasschaefer/miniconda3/etc/profile.d/conda.sh
+source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate hybrid
 
 echo "Node: $(hostname)"

@@ -12,6 +12,9 @@ set -euo pipefail
 
 cd "$SLURM_SUBMIT_DIR"
 
+source "$HOME/miniconda3/etc/profile.d/conda.sh"
+conda activate hybrid
+
 echo "Node: $(hostname)"
 echo "Start: $(date)"
 echo "Python: $(which python)"
