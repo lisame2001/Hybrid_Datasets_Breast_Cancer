@@ -163,6 +163,7 @@ python -m gan_compare.scripts.train_test_classifier \
   --seed 42
 ```
 
+Run this command on a CUDA-capable machine or an allocated GPU compute node.
 Each configuration writes a text log and model checkpoints below `extension/hybrid_experiments/full_ft/<condition>_seed<seed>/`. These generated outputs are ignored by Git.
 
 ## Reproduce all paper experiments with SLURM
