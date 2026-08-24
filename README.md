@@ -57,6 +57,8 @@ The following sequence reproduces the released experiment setup from a fresh clo
    conda activate hybrid
    ```
 
+Note: A working Conda installation is required. On systems where Conda is installed but not initialized in the current shell, initialize it first, for example with source ~/miniconda3/etc/profile.d/conda.sh.
+   
 4. Check all 40 configurations and the local image counts before training:
 
    ```bash
