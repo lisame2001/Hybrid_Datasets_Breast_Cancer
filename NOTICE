@@ -1,0 +1,24 @@
+Hybrid Datasets for Breast Mass Classification
+
+This repository is a derivative of mammo_dp:
+https://github.com/RichardObi/mammo_dp
+Upstream commit: 20caed79441855870bae6f7efca1cac0ca8bac7e
+
+The upstream project accompanies:
+Richard Osuala et al., "Enhancing the Utility of Privacy-Preserving Cancer
+Classification using Synthetic Data," 2024.
+
+The upstream software is distributed under the Apache License, Version 2.0.
+The original LICENSE file is retained in this repository.
+
+Principal modifications for the present study include:
+
+- deterministic, class-balanced sampling of synthetic mass patches;
+- additive hybrid training with a fixed real training set;
+- seed-specific configurations for eight full fine-tuning conditions;
+- SLURM scripts for five-seed experiment arrays;
+- evaluation on held-out CBIS-DDSM and external BCDR data; and
+- per-seed, aggregate, and paired-difference result exports.
+
+Medical imaging datasets and generated image files are not covered by the
+software license and remain subject to their respective access and reuse terms.

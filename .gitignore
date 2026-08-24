@@ -1,0 +1,61 @@
+# Real and synthetic datasets
+/dataset16062024/
+/dataset/
+/datasets/
+/extension/synthetic_data/
+
+# Training outputs
+/extension/hybrid_experiments/*
+!/extension/hybrid_experiments/full_ft/
+/extension/hybrid_experiments/full_ft/*
+!/extension/hybrid_experiments/full_ft/evaluation_exports/
+/extension/hybrid_experiments/full_ft/evaluation_exports/*
+!/extension/hybrid_experiments/full_ft/evaluation_exports/*.csv
+!/extension/hybrid_experiments/full_ft/evaluation_exports/*.png
+
+# Model files
+**/model_checkpoint/
+*.pt
+*.pth
+*.ckpt
+
+# Logs and scheduler output
+/logs/
+/slurm_logs/
+*.out
+*.err
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments and local settings
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+conda-env/
+.DS_Store
+
+# Temporary and backup files
+*.before_hybrid
+*.bak
+*.tmp
+*~
+repo_audit.txt
+git_history_audit.txt
+submission_repository.zip
+full_ft_evaluation_bundle.zip
+hybrid_evaluation.csv
+
+# Large derived poster
+/docs/poster.png
